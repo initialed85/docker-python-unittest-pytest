@@ -15,6 +15,11 @@ class SomeClassTest(unittest.TestCase):
     def setUp(self):
         self.subject = SomeClass('Fred')
 
+    #
+    # these tests are simple black box style tests (testing the object without any contrived
+    # behaviours)
+    #
+
     def test_add_numbers_nominal(self):
         self.assertEqual(
             self.subject.add_numbers(8, 16),  # method to call (with args)
@@ -33,6 +38,12 @@ class SomeClassTest(unittest.TestCase):
             self.subject.add_numbers,  # method to call
             *('apples', 'oranges'),  # args to call it with
         )
+
+    #
+    # these tests replace the Session() constructor with a mock so we can contrive values
+    # (because we can't rely on a HTTP request to a real service always returning the same
+    # value)
+    #
 
     @patch('requests.Session')
     def test_get_ip_address_nominal(self, mock_session_constructor):
