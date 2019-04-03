@@ -1,0 +1,6 @@
+# include the production requirements
+-r requirements.txt
+
+# specific dev/test requirements
+pytest==4.4.0
+mock==2.0.0
