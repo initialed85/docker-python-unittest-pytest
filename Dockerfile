@@ -14,8 +14,15 @@ WORKDIR /srv/
 RUN pip3 install -r requirements-dev.txt
 
 # Build our entrypoint
-RUN echo "python -m pytest -v --junit-xml test_results/some_module_results.xml some_module" > test.sh
+RUN echo "#!/usr/bin/env bash" > test.sh
+RUN echo "python3 -m pytest -v --junit-xml test_results/some_module_results.xml some_module" >> test.sh
 RUN chmod +x test.sh
 
 # Run the entrypoint (only when the image is instantiated into a container)
-CMD ["test.sh"]
+CMD ["./test.sh"]
+
+# to build: docker build -t test_some_module .
+
+# to run: docker run --name test_some_module test_some_module
+
+# once the run is complete, /srv/test_results inside the container will hold JUnit XML files
