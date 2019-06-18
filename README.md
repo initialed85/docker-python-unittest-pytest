@@ -44,3 +44,10 @@ The multi-stage `Dockerfile` is completely unnecessary, but it demonstrates an a
     - `docker rm -f test_some_module`
 - View the test results (in JUnit XML)
     - `cat test_results/some_module_results.xml`
+
+## Convenience scripts (for Docker approach)
+
+- Build the Docker image
+    - `./build.sh`
+- Run the Docker image and extract the test results
+    - `./test.sh`
